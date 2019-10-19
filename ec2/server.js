@@ -53,9 +53,11 @@ app.get("/api/route", function(req, res, next){
     axios.get("https://maps.googleapis.com/maps/api/directions/json?mode=walking&language=ja&origin="+encodeURIComponent(origin)+"&destination="+encodeURIComponent(destination)+"&key="+process.env.GOOGLE_MAP_API_KEY).then((resp)=>{
         if (resp.data && resp.data.routes && resp.data.routes[0] && resp.data.routes[0].legs && resp.data.routes[0].legs[0] && resp.data.routes[0].legs[0].steps) {
             res.json(resp.data.routes[0].legs[0].steps.map(function (step){
-                return Object.assign(step, {
+                return {
+                    lat: step.start_location.lat,
+                    lng: step.start_location.lng,
                     instructions: step.html_instructions.replace(/\<.+?\>/g, "").replace(/\s/g, "、").replace(/\&.+?\;/g, "")
-                })
+                }
             }))
         } else {
             res.status(404).end();

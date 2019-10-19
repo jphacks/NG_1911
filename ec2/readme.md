@@ -52,28 +52,19 @@ http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com
 ```
 [
     {
-        "distance": {
-            "text": "1.3 km",
-            "value": 1271
-        },
-        "duration": {
-            "text": "16分",
-            "value": 939
-        },
-        "end_location": {
-            "lat": 35.1608297,
-            "lng": 136.950104
-        },
-        "html_instructions": "<b>西</b>に進んで<b>215-四谷</b>に向かう",
-        "polyline": {
-            "points": "azquE_v}bYAFAFCNEZADGZQv@GZCLI`@ADCLCHKf@Ot@ERCJKb@EVEPEJGZ?BKh@ELAPCLERADKh@EJUjAKh@Id@A@Ij@EJERAJANAFARCJENGZK`AAJYhD?HKtAGl@CXE\\Ej@?F]xDALC\\AHKfACj@GJ?RQpBAHQxBGj@Gz@CZIfAAFCf@Cl@Cd@?P?X?B?j@@j@?L@\\B`@?JIB"
-        },
-        "start_location": {
-            "lat": 35.1582477,
-            "lng": 136.9636778
-        },
-        "travel_mode": "WALKING",
+        "lat": 35.1582477,
+        "lng": 136.9636778,
         "instructions": "西に進んで215-四谷に向かう"
+    },
+    {
+        "lat": 35.1608297,
+        "lng": 136.950104,
+        "instructions": "椙山女学園南（交差点）、を右折する"
+    },
+    {
+        "lat": 35.1609699,
+        "lng": 136.9500962,
+        "instructions": "椙山女学園南（交差点）、を左折する"
     },
     ...
 ]
