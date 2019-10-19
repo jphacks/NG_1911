@@ -1,5 +1,3 @@
-
-import urllib.request
 import urllib.request
 import json
 
@@ -47,17 +45,31 @@ class Buzzer:
     def __init__(self, OUTPUT_PIN):
         self.OUTPUT_PIN = OUTPUT_PIN
         self.is_buzzing = False
+        self.thread = None
+        self.stopEvent = threading.Event()
+    def buzz():
+        while True:
+            pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
+            if self.stopEvent.wait(timeout=1):
+                break
+            pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
+            if self.stopEvent.wait(timeout=1):
+                break
     def start(self):
         if self.is_buzzing == True:
             return
-        pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
-        time.sleep(0.5)
-        pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
+
+        self.thread = threading.Thread(target=buzz)
+        self.thread.start()
 
         self.is_buzzing = True
     def stop(self):
         if self.is_buzzing == False:
             return
+
+        self.stopEvent.set()
+        pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
+
         self.is_buzzing = False
 
 motor = Motor(OUTPUT_PINS=[6 , 13 , 19 , 26], TIME_SLEEP=0.002)
