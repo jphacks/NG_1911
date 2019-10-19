@@ -40,6 +40,7 @@ http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com
 アラートが鳴っていれば鳴らすのを止めるAPI
 
 ### GET /api/route
+目的地までのルートを導出するAPI
 #### query
 * origin(開始地点)
 * destination(終了地点)
@@ -48,3 +49,32 @@ http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com
 * 400 パラメータ以上
 * 404 ルート未発見
 * 500 サーバー内エラー
+```
+[
+    {
+        "distance": {
+            "text": "1.3 km",
+            "value": 1271
+        },
+        "duration": {
+            "text": "16分",
+            "value": 939
+        },
+        "end_location": {
+            "lat": 35.1608297,
+            "lng": 136.950104
+        },
+        "html_instructions": "<b>西</b>に進んで<b>215-四谷</b>に向かう",
+        "polyline": {
+            "points": "azquE_v}bYAFAFCNEZADGZQv@GZCLI`@ADCLCHKf@Ot@ERCJKb@EVEPEJGZ?BKh@ELAPCLERADKh@EJUjAKh@Id@A@Ij@EJERAJANAFARCJENGZK`AAJYhD?HKtAGl@CXE\\Ej@?F]xDALC\\AHKfACj@GJ?RQpBAHQxBGj@Gz@CZIfAAFCf@Cl@Cd@?P?X?B?j@@j@?L@\\B`@?JIB"
+        },
+        "start_location": {
+            "lat": 35.1582477,
+            "lng": 136.9636778
+        },
+        "travel_mode": "WALKING",
+        "instructions": "西に進んで215-四谷に向かう"
+    },
+    ...
+]
+```
