@@ -77,7 +77,7 @@ while True:
             elif data["status"] == 1:
                 motor.open()
             # ブザーを鳴らす
-            if if data["alert"] == 0:
+            if data["alert"] == 0:
                 buzzer.stop()
             elif data["alert"] == 1:
                 buzzer.start()
