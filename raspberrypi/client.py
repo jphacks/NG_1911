@@ -60,7 +60,7 @@ class Buzzer:
         if self.is_buzzing == True:
             return
 
-        self.thread = threading.Thread(target=buzz)
+        self.thread = threading.Thread(target=self.buzz)
         self.thread.start()
 
         self.is_buzzing = True
