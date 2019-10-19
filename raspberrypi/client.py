@@ -66,7 +66,7 @@ buzzer = Buzzer(OUTPUT_PIN=2)
 BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
 
 while True:
-    req = urllib.request.Request(BASE_URL+"/api/pi/status")
+    req = urllib.request.Request(BASE_URL+"/api/status")
     try:
         with urllib.request.urlopen(req) as res:
             data = json.loads(res.read().decode('utf-8'))

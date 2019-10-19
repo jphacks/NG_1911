@@ -3,25 +3,33 @@ ssh -i jphack2019-ec2.pem ubuntu@ec2-13-114-103-68.ap-northeast-1.compute.amazon
 
 # 仕様
 
-## RaspberryPI用API
-### GET /api/pi/status
-ステータスを返す
-{"status": "open"}
-* open…開ける
-* closed…閉じている
-* alert…アラートを鳴らす
-
-## モバイル用API
-
-### GET /api/mobile/test
+### GET /api/test
 テスト用
 {"hello": "world"}が返ってくる
 
-### GET /api/mobile/connected
-接続時に呼ばれる
+## RaspberryPI用API
+### GET /api/pi/status
+ステータスを返す
+```
+{"status": 0, "alert": 0}
+```
+#### status
+* 0...閉まっている
+* 1...開いている
 
-### GET /api/mobile/alert
-外れた時に通知
+#### alert
+* 0...アラートが鳴っている
+* 1...アラートは鳴っている
 
-### GET /api/mobile/finished
-利用終了時に通知
+## モバイル用API
+### GET /api/key/open
+鍵がしまっていれば開けるAPI
+
+### GET /api/key/close
+鍵が開いていれば閉めるAPI
+
+### GET /api/alert/start
+アラートが鳴っていなければ鳴らすAPI
+
+### GET /api/alert/stop
+アラートが鳴っていれば鳴らすのを止めるAPI
