@@ -1,6 +1,9 @@
 var axios = require("axios");
 var express = require("express");
 require("dotenv").config();
+var fs = require("fs");
+
+var textToSpeech = require('@google-cloud/text-to-speech');
 
 var app = express();
 
@@ -70,6 +73,27 @@ app.get("/api/route", function(req, res, next){
             res.status(404).end();
         }
     }).catch((error)=>{
+        res.status(500).end();
+    })
+})
+
+app.get("/api/voice", function(req, res, next){
+    console.log("/api/voice")
+    var text = req.query.text
+    if (!text)
+        return res.status(400).end();
+
+    var client = new textToSpeech.TextToSpeechClient();
+    client.synthesizeSpeech({
+      input: {text: text},
+      voice: {languageCode: 'ja-JP', ssmlGender: 'NEUTRAL'},
+      audioConfig: {audioEncoding: 'MP3'},
+    }).then(([response])=>{
+      var id = Math.floor(Math.random() * 65536)
+      fs.writeFileSync('./temp/output_'+id+'.mp3', response.audioContent, 'binary');
+      res.sendFile('./temp/output_'+id+'.mp3', { root : __dirname});
+    }).catch((error)=>{
+        console.log(error)
         res.status(500).end();
     })
 })
