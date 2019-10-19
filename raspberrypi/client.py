@@ -47,7 +47,7 @@ class Buzzer:
     def __init__(self, OUTPUT_PIN):
         self.OUTPUT_PIN = OUTPUT_PIN
         self.is_buzzing = False
-    def buzz(self):
+    def start(self):
         if self.is_buzzing == True:
             return
         pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
