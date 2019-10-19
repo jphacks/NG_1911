@@ -48,7 +48,8 @@ class Buzzer:
         self.is_buzzing = False
         self.thread = None
         self.stopEvent = threading.Event()
-    def buzz():
+        
+    def buzz(self):
         while True:
             pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
             if self.stopEvent.wait(timeout=1):
