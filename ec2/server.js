@@ -24,17 +24,17 @@ app.get("/api/key/open", function(req, res, next){
 });
 
 app.get("/api/key/close", function(req, res, next){
-  alert = ALERT_BUZZ
+  status = STATUS_CLOSE
   res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/alert/start", function(req, res, next){
-  alert = ALERT_NONE
+  alert = ALERT_BUZZ
   res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/alert/stop", function(req, res, next){
-  status = STATUS_CLOSED
+  alert = ALERT_NONE
   res.json({ "status": status, "alert": alert });
 });
 
