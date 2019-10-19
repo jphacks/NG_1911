@@ -18,34 +18,41 @@ var status = STATUS_CLOSED
 var alert = ALERT_NONE
 
 app.get("/api/test", function(req, res, next){
+    console.log("/api/test")
     res.json({"Hello": "World"});
 });
 
 app.get("/api/key/open", function(req, res, next){
+    console.log("/api/key/open")
     status = STATUS_OPEN
     res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/key/close", function(req, res, next){
+  console.log("/api/key/close")
   status = STATUS_CLOSED
   res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/alert/start", function(req, res, next){
+  console.log("/api/alert/start")
   alert = ALERT_BUZZ
   res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/alert/stop", function(req, res, next){
+  console.log("/api/alert/stop")
   alert = ALERT_NONE
   res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/status", function(req, res, next){o
+    console.log("/api/status")
     res.json({ "status": status, "alert": alert });
 });
 
 app.get("/api/route", function(req, res, next){
+    console.log("/api/route")
     var origin = req.query.origin
     var destination = req.query.destination
     if (!(origin && destination))
