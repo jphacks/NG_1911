@@ -20,7 +20,7 @@ class Motor:
                         pi.digitalWrite (self.OUTPUT_PINS [i], pi.HIGH)
                     else :
                         pi.digitalWrite (self.OUTPUT_PINS [i], pi.LOW)
-                time.sleep (TIME_SLEEP)
+                time.sleep (self.TIME_SLEEP)
     def close(self):
         for k in range(128):
             for p in range (4):
@@ -29,7 +29,7 @@ class Motor:
                         pi.digitalWrite (self.OUTPUT_PINS [i], pi.HIGH)
                     else :
                         pi.digitalWrite (self.OUTPUT_PINS [i], pi.LOW)
-                time.sleep (TIME_SLEEP)
+                time.sleep (self.TIME_SLEEP)
 
 class Buzzer:
     def __init__(self):
