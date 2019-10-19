@@ -7,22 +7,19 @@ import wiringpi as pi , time
 
 BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
 
-STATUS_CLOSED = 0
-STATUS_OPEN = 1
-SYATUS_ERROR = 2
-
-status = 0
-
 pi.wiringPiSetupGpio()
 
 class Motor:
     def __init__(self, OUTPUT_PINS, TIME_SLEEP):
         self.OUTPUT_PINS = OUTPUT_PINS
         self.TIME_SLEEP = TIME_SLEEP
+        self.is_open = False
         # GPIOピンを出力モードにする
         for OUTPUT_PIN in self.OUTPUT_PINS:
             pi.pinMode(OUTPUT_PIN, pi.OUTPUT)
     def open(self):
+        if self.is_open == True:
+            return
         for k in range(128):
             for p in range (4):
                 for i in range (4):
@@ -31,7 +28,11 @@ class Motor:
                     else :
                         pi.digitalWrite (self.OUTPUT_PINS [i], pi.LOW)
                 time.sleep (self.TIME_SLEEP)
+        self.is_open = True
+
     def close(self):
+        if self.is_open == False:
+            return
         for k in range(128):
             for p in range (4):
                 for i in range (4):
@@ -40,22 +41,27 @@ class Motor:
                     else :
                         pi.digitalWrite (self.OUTPUT_PINS [i], pi.LOW)
                 time.sleep (self.TIME_SLEEP)
+        self.is_open = False
 
 class Buzzer:
     def __init__(self, OUTPUT_PIN):
         self.OUTPUT_PIN = OUTPUT_PIN
+        self.is_buzzing = False
     def buzz(self):
+        if self.is_buzzing == True:
+            return
         pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
         time.sleep(0.5)
         pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
 
+        self.is_buzzing = True
+    def stop(self):
+        if self.is_buzzing == False:
+            return
+        self.is_buzzing = False
 
 motor = Motor(OUTPUT_PINS=[6 , 13 , 19 , 26], TIME_SLEEP=0.002)
 buzzer = Buzzer(OUTPUT_PIN=2)
-
-#
-
-#buzzer.buzz()
 
 BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
 
@@ -65,14 +71,16 @@ while True:
         with urllib.request.urlopen(req) as res:
             data = json.loads(res.read().decode('utf-8'))
             print(data)
-            if data["status"] == 0 and status != STATUS_CLOSED:
+            # 鍵の開閉
+            if data["status"] == 0:
                 motor.close()
-                status = STATUS_CLOSED
-            elif data["status"] == 1 and status != STATUS_OPEN:
+            elif data["status"] == 1:
                 motor.open()
-                status = STATUS_OPEN
-            elif data["status"] == 2:
-                pass
+            # ブザーを鳴らす
+            if if data["alert"] == 0:
+                buzzer.stop()
+            elif data["alert"] == 1:
+                buzzer.start()
 
     except urllib.error.HTTPError as err:
         print(err.code)
