@@ -1,4 +1,4 @@
-import requests
+#import requests
 import wiringpi as pi , time
 
 BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
