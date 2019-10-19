@@ -24,7 +24,7 @@ app.get("/api/key/open", function(req, res, next){
 });
 
 app.get("/api/key/close", function(req, res, next){
-  status = STATUS_CLOSE
+  status = STATUS_CLOSED
   res.json({ "status": status, "alert": alert });
 });
 
