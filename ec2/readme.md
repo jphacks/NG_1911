@@ -38,3 +38,13 @@ http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com
 
 ### GET /api/alert/stop
 アラートが鳴っていれば鳴らすのを止めるAPI
+
+### GET /api/route
+#### query
+* origin(開始地点)
+* destination(終了地点)
+#### status code
+* 200 OK
+* 400 パラメータ以上
+* 404 ルート未発見
+* 500 サーバー内エラー
