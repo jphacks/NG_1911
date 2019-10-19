@@ -1,4 +1,7 @@
+var axios = require("axios");
 var express = require("express");
+require("dotenv").config();
+
 var app = express();
 
 var server = app.listen(3000, function(){
@@ -38,6 +41,18 @@ app.get("/api/alert/stop", function(req, res, next){
   res.json({ "status": status, "alert": alert });
 });
 
-app.get("/api/status", function(req, res, next){
+app.get("/api/status", function(req, res, next){o
     res.json({ "status": status, "alert": alert });
 });
+
+app.get("/api/route", function(req, res, next){
+    var origin = req.query.origin
+    var destination = req.query.destination
+    axios.get("https://maps.googleapis.com/maps/api/directions/json?mode=walking&language=ja&origin="+encodeURIComponent(origin)+"&destination="+encodeURIComponent(destination)+"&key="+process.env.GOOGLE_MAP_API_KEY).then((resp)=>{
+        res.json(resp.data.routes[0].legs[0].steps.map(function (step){
+            return Object.assign(step, {
+                instructions: step.html_instructions.replace(/\<.+?\>/g, "").replace(/\s/g, "、").replace(/\&.+?\;/g, "")
+            })
+        }))
+    })
+})
