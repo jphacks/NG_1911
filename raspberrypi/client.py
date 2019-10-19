@@ -46,30 +46,25 @@ class Buzzer:
     def __init__(self, OUTPUT_PIN):
         self.OUTPUT_PIN = OUTPUT_PIN
         self.is_buzzing = False
-        self.thread = None
-        self.stopEvent = threading.Event()
-        
+        self.thread = threading.Thread(target=self.buzz)
+        self.thread.start()
+
     def buzz(self):
         while True:
-            pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
-            if self.stopEvent.wait(timeout=1):
-                break
+            if self.is_buzzing == True:
+                pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
+            time.sleep(1)
             pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
-            if self.stopEvent.wait(timeout=1):
-                break
+            time.sleep(1)
     def start(self):
         if self.is_buzzing == True:
             return
-
-        self.thread = threading.Thread(target=self.buzz)
-        self.thread.start()
 
         self.is_buzzing = True
     def stop(self):
         if self.is_buzzing == False:
             return
 
-        self.stopEvent.set()
         pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
 
         self.is_buzzing = False
