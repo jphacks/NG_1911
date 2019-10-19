@@ -46,7 +46,7 @@ app.get("/api/alert/stop", function(req, res, next){
   res.json({ "status": status, "alert": alert });
 });
 
-app.get("/api/status", function(req, res, next){o
+app.get("/api/status", function(req, res, next){
     console.log("/api/status")
     res.json({ "status": status, "alert": alert });
 });
