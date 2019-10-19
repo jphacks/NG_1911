@@ -1,4 +1,8 @@
-#import requests
+
+import urllib.request
+import urllib.request
+import json
+
 import wiringpi as pi , time
 
 BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
@@ -49,10 +53,29 @@ class Buzzer:
 motor = Motor(OUTPUT_PINS=[6 , 13 , 19 , 26], TIME_SLEEP=0.002)
 buzzer = Buzzer(OUTPUT_PIN=2)
 
-motor.open()
+#
 
-buzzer.buzz()
+#buzzer.buzz()
 
-#response = requests.get(BASE_URL+"/api/pi/status")
-#print(response.status_code)
-#print(response.text)
+BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
+
+while True:
+    req = urllib.request.Request(BASE_URL+"/api/pi/status")
+    try:
+        with urllib.request.urlopen(req) as res:
+            data = json.loads(res.read().decode('utf-8'))
+            print(data)
+            if data["status"] == 0 and status != STATUS_CLOSED:
+                motor.close()
+                status = STATUS_CLOSED
+            elif data["status"] == 1 and status != STATUS_OPEN:
+                motor.open()
+                status = STATUS_OPEN
+            elif data["status"] == 2:
+                pass
+
+    except urllib.error.HTTPError as err:
+        print(err.code)
+    except urllib.error.URLError as err:
+        print(err.reason)
+    time.sleep(1)
