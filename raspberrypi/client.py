@@ -3,6 +3,12 @@ import wiringpi as pi , time
 
 BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
 
+STATUS_CLOSED = 0
+STATUS_OPEN = 1
+SYATUS_ERROR = 2
+
+status = 0
+
 pi.wiringPiSetupGpio()
 
 class Motor:
@@ -32,11 +38,20 @@ class Motor:
                 time.sleep (self.TIME_SLEEP)
 
 class Buzzer:
-    def __init__(self):
-        pass
+    def __init__(self, OUTPUT_PIN):
+        self.OUTPUT_PIN = OUTPUT_PIN
+    def buzz(self):
+        pi.digitalWrite (self.OUTPUT_PIN, pi.HIGH)
+        time.sleep(0.5)
+        pi.digitalWrite (self.OUTPUT_PIN, pi.LOW)
+
 
 motor = Motor(OUTPUT_PINS=[6 , 13 , 19 , 26], TIME_SLEEP=0.002)
+buzzer = Buzzer(OUTPUT_PIN=2)
+
 motor.open()
+
+buzzer.buzz()
 
 #response = requests.get(BASE_URL+"/api/pi/status")
 #print(response.status_code)
