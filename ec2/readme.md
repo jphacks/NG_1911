@@ -3,6 +3,11 @@ ssh -i jphack2019-ec2.pem ubuntu@ec2-13-114-103-68.ap-northeast-1.compute.amazon
 
 # 仕様
 
+## API URL
+```
+http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com
+```
+
 ### GET /api/test
 テスト用
 {"hello": "world"}が返ってくる
