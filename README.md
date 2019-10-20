@@ -61,6 +61,8 @@ https://github.com/jphacks/NG_1911_1
 
 #### フレームワーク・ライブラリ・モジュール
 * Express(node.js)
+* Alamofire(swift)
+* SwiftyJSON(swift)
 
 #### デバイス
 * RaspberryPI
@@ -88,6 +90,9 @@ httpクライアントアプリケーションの開発
 * Google APIからルート情報を取得するAPI
 
 #### iOS app
+自転車の鍵としての役割とながら運転を防止する機能の実装
 * NFC Tagのリード機能
 * 使いやすく親しみやすいデザイン設計と実装
 * 目的地設定と音声による案内
+* ユーザーがながら運転をしてるかどうかの判定機能
+* 自転車の鍵としての役割の機能
