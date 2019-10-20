@@ -1,6 +1,6 @@
 # KACHALIN
 
-[![KACAHLIN](kachalin_title.PNG)](https://www.youtube.com/watch?v=G5rULR53uMk)
+[![KACAHLIN](kachalin_title.PNG)](https://youtu.be/yNi4q3eOvP0)
 
 ## ネイティブアプリ開発のリポジトリ
 https://github.com/jphacks/NG_1911_1
@@ -49,10 +49,13 @@ https://github.com/jphacks/NG_1911_1
 その結果、交通事故の防止や安全運転の普及に繋がる。
 
 ### 今後の展望
-今後は下記のことを改善していく
+今後は下記のことを改善していく。
 - 施錠部分のの強化・改善
 - 音声案内の精度向上
 - 複数台の自転車に対応できるシステム構築
+
+サービスとして以下の展望が考えられる。
+- 決済機能を導入することで、2020年東京オリンピック開催による訪日客の増加や認知の広まりに伴い需要が増すレンタルサイクル市場に参入。レンタルサイクルから自転車の安全運転推進に携わる。
 
 ## 開発内容・開発技術
 ### 活用した技術
@@ -101,3 +104,6 @@ httpクライアントアプリケーションの開発
 https://github.com/jphacks/NG_1911_1/blob/master/rejack/RideOnViewController.swift
 上記のファイルの117行目から134行目で音声案内機能の主な実装を行なっている。
 GPSの位置情報が更新された時に次の音声案内場所の付近に来た時にAPIから取得した案内文を音声再生するようにしている。
+
+#### 全体像
+![zentai](sozai01.PNG)
