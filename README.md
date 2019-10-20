@@ -2,8 +2,11 @@
 
 [![KACAHLIN](kachalin_title.PNG)](https://www.youtube.com/watch?v=G5rULR53uMk)
 
+## ネイティブアプリ開発のリポジトリ
+https://github.com/jphacks/NG_1911_1
+
 ## 製品概要
-### 自転車 Tech
+### 自転車 X Tech
 
 ### 背景（製品開発のきっかけ、課題等）
 - スマートフォンを操作しながらの自転車運転が社会問題になっている。
