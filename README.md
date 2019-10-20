@@ -91,8 +91,8 @@ httpクライアントアプリケーション（鍵部分）の開発
 * GPIOピンでのブザーの並列制御
 * 実際に自転車への鍵とブザーの取り付け
 
-![board](images/boad.PNG)
-![motor](images/spoke.PNG)
+![board](images/boad.png)
+![motor](images/spoke.png)
 
 
 #### Cloud server (Amazon Web Services EC2)
