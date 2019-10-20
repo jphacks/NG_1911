@@ -93,6 +93,7 @@ httpクライアントアプリケーション（鍵部分）の開発
 
 ![board](images/boad.png)
 ![motor](images/spoke.png)
+![card](images/card.png)
 
 
 #### Cloud server (Amazon Web Services EC2)
