@@ -45,6 +45,7 @@ class Motor:
 class Buzzer:
     def __init__(self, OUTPUT_PIN):
         self.OUTPUT_PIN = OUTPUT_PIN
+        pi.pinMode(OUTPUT_PIN, pi.OUTPUT)
         self.is_buzzing = False
         self.thread = threading.Thread(target=self.buzz)
         self.thread.start()
