@@ -4,7 +4,7 @@ import json
 
 import wiringpi as pi , time
 
-BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
+BASE_URL = "http://ec2-13-114-247-66.ap-northeast-1.compute.amazonaws.com"
 
 pi.wiringPiSetupGpio()
 
@@ -70,9 +70,7 @@ class Buzzer:
         self.is_buzzing = False
 
 motor = Motor(OUTPUT_PINS=[6 , 13 , 19 , 26], TIME_SLEEP=0.002)
-buzzer = Buzzer(OUTPUT_PIN=2)
-
-BASE_URL = "http://ec2-13-114-103-68.ap-northeast-1.compute.amazonaws.com"
+buzzer = Buzzer(OUTPUT_PIN=4)
 
 while True:
     req = urllib.request.Request(BASE_URL+"/api/status")
